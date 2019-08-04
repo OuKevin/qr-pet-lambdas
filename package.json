@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "aws-sdk": "^2.503.0",
+    "dotenv": "^8.0.0",
+    "lerna": "^3.15.0"
+  },
+  "scripts": {
+    "saveConfig": "lerna exec --since --include-merged-tags -- node '../../publish.js'"
+  }
+}
