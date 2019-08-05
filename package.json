@@ -9,7 +9,7 @@
   },
   "scripts": {
     "bootstrap:ci": "lerna bootstrap --since --include-merged-tags",
-    "build": "npm run bootstrap:ci && npm run saveConfig && lerna version",
+    "build": "npm run bootstrap:ci && npm run saveConfig && lerna version patch",
     "saveConfig": "lerna exec --since master --include-merged-tags -- node '../../publish.js'"
   }
 }
