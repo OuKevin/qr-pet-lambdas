@@ -34,7 +34,7 @@ console.log('zipPath', path)
 //     ZipFile: fs.readFileSync(zipPath)
 //   },
 //   Description: "testing",
-//   FunctionName: "MyFunction",
+//   FunctionName: lambdaName,
 //   Handler: "index.handler", // is of the form of the name of your source file and then name of your function handler
 //   MemorySize: 128,
 //   Publish: true,
