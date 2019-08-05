@@ -4,6 +4,11 @@ require('dotenv').config({ path: '../../.env' })
 var AWS = require('aws-sdk');
 const path = require('path');
 const fs = require('fs');
+const packageJSONPath = `${path.resolve()}/package.json`;
+const packageJSON = require(packageJSONPath);
+
+const lambdaName = packageJSON.name
+
 
 // Load credentials and set region from JSON file
 const {
@@ -39,7 +44,7 @@ console.log('zipPath', path)
 //  };
 
 const params = {
-  FunctionName: 'MyFunction', /* required */
+  FunctionName: lambdaName, /* required */
   ZipFile: fs.readFileSync(zipPath),
   Publish: false,
 }

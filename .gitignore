@@ -3,4 +3,5 @@ node_modules
 /packages/*/node_modules/*
 /packages/*/dist/*
 /packages/*/.DS_Store
+.DS_Store
 
