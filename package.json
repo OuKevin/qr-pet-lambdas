@@ -7,6 +7,6 @@
     "lerna": "^3.15.0"
   },
   "scripts": {
-    "saveConfig": "lerna exec --since --include-merged-tags -- node '../../publish.js'"
+    "saveConfig": "lerna exec --since master --include-merged-tags -- node '../../publish.js'"
   }
 }
