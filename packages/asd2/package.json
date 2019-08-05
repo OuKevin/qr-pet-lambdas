@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "build": "(mkdir dist ||  rm dist/* || rm -rf dist ) && webpack && cd dist && zip -qr archive.zip index.js"
+    "build": "(mkdir dist ||  rm dist/* || rm -rf dist ) && webpack && cd dist && zip -qr archive.zip index.js",
+    "prepack": "npm run build",
+    "postpack": "rm -rf dist"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
