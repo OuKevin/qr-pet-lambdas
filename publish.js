@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 const path = require('path');
 const fs = require('fs');
 
-const publish = async () => {
+(async () => {
   const packageJSONPath = `${path.resolve()}/package.json`;
   const packageJSON = require(packageJSONPath);
   const lambdaName = packageJSON.name
@@ -50,8 +50,7 @@ const publish = async () => {
     };
     }
   }
-
-  publish()
+})();
 
 
 
