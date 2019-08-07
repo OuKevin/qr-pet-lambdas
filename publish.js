@@ -1,8 +1,13 @@
+/* eslint-disable import/no-dynamic-require */
+
 require('dotenv').config({ path: '../../.env' });
 
 const AWS = require('aws-sdk');
 const path = require('path');
 const fs = require('fs');
+
+const packageJSONPath = `${path.resolve()}/package.json`;
+const packageJSON = require(packageJSONPath);
 
 const createNewLambda = async (lambda, lambdaName, zipPath) => {
   try {
@@ -13,12 +18,12 @@ const createNewLambda = async (lambda, lambdaName, zipPath) => {
       FunctionName: lambdaName,
       Handler: 'index.handler',
       MemorySize: 128,
-      Role: 'arn:aws:iam::764074376504:role/lambda-ful-access',
+      Role: 'arn:aws:iam::764074376504:role/lambda-full-access',
       Runtime: 'nodejs10.x',
       Timeout: 15,
     }).promise();
   } catch (error) {
-    console.error(`could not save ${lambdaName}, ${JSON.stringify(error)}`);
+    console.error(`Could not save ${lambdaName}, ${JSON.stringify(error)}`);
     process.exit(1);
   }
 };
@@ -35,8 +40,6 @@ const updateExistingLambda = async (lambda, lambdaName, zipPath) => {
 };
 
 (async () => {
-  const packageJSONPath = `${path.resolve()}/package.json`;
-  const packageJSON = require(packageJSONPath);
   const lambdaName = packageJSON.name;
 
   const {
@@ -59,6 +62,9 @@ const updateExistingLambda = async (lambda, lambdaName, zipPath) => {
   } catch (error) {
     if (error.code === 'ResourceNotFoundException') {
       await createNewLambda(lambda, lambdaName, zipPath);
+    } else {
+      console.error(`Could not save ${lambdaName}, ${JSON.stringify(error)}`);
+      process.exit(1);
     }
   }
 })();
