@@ -18,9 +18,9 @@
   },
   "scripts": {
     "bootstrap:ci": "lerna bootstrap --since --include-merged-tags",
-    "build": "npm run bootstrap:ci && npm run pack && npm run publish:ci && lerna version patch --yes",
+    "build": "npm run bootstrap:ci && npm run pack && npm run publish && lerna version patch --yes",
     "lint:ci": "lerna run lint --since --include-merged-tags",
     "pack": "lerna run build --since --include-merged-tags",
-    "publish:ci": "lerna exec --since --include-merged-tags -- node '../../publish.js'"
+    "publish": "lerna exec --since --include-merged-tags -- node '../../publish.js'"
   }
 }

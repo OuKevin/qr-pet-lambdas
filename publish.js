@@ -9,6 +9,13 @@ const fs = require('fs');
 const packageJSONPath = `${path.resolve()}/package.json`;
 const packageJSON = require(packageJSONPath);
 
+const {
+  AWS_ACCESS_KEY,
+  AWS_SECRET_KEY,
+  AWS_REGION,
+  LAMBDA_ROLE,
+} = process.env;
+
 const createNewLambda = async (lambda, lambdaName, zipPath) => {
   try {
     await lambda.createFunction({
@@ -17,8 +24,7 @@ const createNewLambda = async (lambda, lambdaName, zipPath) => {
       },
       FunctionName: lambdaName,
       Handler: 'index.handler',
-      MemorySize: 128,
-      Role: 'arn:aws:iam::764074376504:role/lambda-full-access',
+      Role: LAMBDA_ROLE,
       Runtime: 'nodejs10.x',
       Timeout: 15,
     }).promise();
@@ -41,13 +47,6 @@ const updateExistingLambda = async (lambda, lambdaName, zipPath) => {
 
 (async () => {
   const lambdaName = packageJSON.name;
-
-  const {
-    AWS_ACCESS_KEY,
-    AWS_SECRET_KEY,
-    AWS_REGION,
-  } = process.env;
-
   const lambda = new AWS.Lambda({
     apiVersion: '2015-03-31',
     accessKeyId: AWS_ACCESS_KEY,
