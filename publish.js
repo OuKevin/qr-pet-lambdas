@@ -34,20 +34,21 @@ const fs = require('fs');
       ZipFile: fs.readFileSync(zipPath),
       Publish: false,
     }).promise()
-  } catch(error) {
-    if (error.code === 'ResourceNotFoundException') {
-    const createFunctionParams = {
-      Code: {
-        ZipFile: fs.readFileSync(zipPath)
-      },
-      FunctionName: lambdaName,
-      Handler: "index.handler",
-      MemorySize: 128,
-      Publish: true,
-      Role: "arn:aws:iam::764074376504:role/lambda-full-access",
-      Runtime: "nodejs10.x",
-      Timeout: 15,
-    };
+    } catch(error) {
+      console.log(error.code)
+      if (error.code === 'ResourceNotFoundException') {
+      await lambda.createFunction({
+        Code: {
+          ZipFile: fs.readFileSync(zipPath)
+        },
+        FunctionName: lambdaName,
+        Handler: "index.handler",
+        MemorySize: 128,
+        Publish: true,
+        Role: "arn:aws:iam::764074376504:role/lambda-full-access",
+        Runtime: "nodejs10.x",
+        Timeout: 15,
+      }).promise()
     }
   }
 })();
