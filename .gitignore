@@ -4,4 +4,4 @@ node_modules
 /packages/*/dist/*
 /packages/*/.DS_Store
 .DS_Store
-
+lerna-debug.log
