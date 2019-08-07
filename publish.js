@@ -32,7 +32,6 @@ const fs = require('fs');
     await lambda.updateFunctionCode({
       FunctionName: lambdaName,
       ZipFile: fs.readFileSync(zipPath),
-      Publish: false,
     }).promise()
     } catch(error) {
       console.log(error.code)
@@ -44,7 +43,6 @@ const fs = require('fs');
         FunctionName: lambdaName,
         Handler: "index.handler",
         MemorySize: 128,
-        Publish: true,
         Role: "arn:aws:iam::764074376504:role/lambda-full-access",
         Runtime: "nodejs10.x",
         Timeout: 15,
