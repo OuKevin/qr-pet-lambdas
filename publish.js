@@ -23,7 +23,7 @@ const createNewLambda = async (lambda, lambdaName, zipPath) => {
         ZipFile: fs.readFileSync(zipPath),
       },
       FunctionName: lambdaName,
-      Handler: 'index',
+      Handler: 'index.default',
       Role: LAMBDA_ROLE,
       Runtime: 'nodejs10.x',
       Timeout: 15,
