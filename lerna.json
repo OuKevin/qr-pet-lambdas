@@ -1,4 +1,9 @@
 {
+  "command": {
+    "publish": {
+      "ignoreChanges": ["template-lambda"]
+    }
+  },
   "packages": [
     "packages/*"
   ],
